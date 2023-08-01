@@ -37,7 +37,6 @@ graph.f.x.ANP <- function(alpha.par = 0.5, sigma.par = 1, mu.par = 1, start = -1
           uu <- yy*(t^(1/alpha - 1)*exp(-t/alpha))/(alpha^(1/alpha)*gamma(1/alpha))
           return(uu)
         }
-
         bb[pos] <- integrate(gg, lower = 0, upper = Inf)$value
       }
       else{
@@ -46,10 +45,8 @@ graph.f.x.ANP <- function(alpha.par = 0.5, sigma.par = 1, mu.par = 1, start = -1
           uu <- yy*(t^(1/alpha - 1)*exp(-t/alpha))/(alpha^(1/alpha)*gamma(1/alpha))
           return(uu)
         }
-
         bb[pos] <- integrate(gg, lower = 0, upper = Inf)$value
       }
-
     }
     return(bb)
   }
@@ -273,7 +270,6 @@ QQ.plot.Ay <- function(data, alpha.est, sigma.est, mu.est, corr = 0.25){
 jj <- rANPare(n = 1000, alpha = 0.5, sigma = 1, mu = 2)
 QQ.plot.Ay(data = jj, alpha.est = 0.5, sigma.est = 1, mu.est = 2)
 
-
 ###------ Estimation procedures -------###
 ##### MME
 lmix.MME <- function(obser.y){
@@ -312,124 +308,3 @@ lmix.MME <- function(obser.y){
     return(out)
   }
 }
-
-### EM Algorithm
-
-
-
-
-
-
-
-
-
-#ANP.quantile <- function(alpha = 0.5, sigma = 1, mu = 1, u = 0.1){
-#  sam <- rgamma(10000, shape = 1/alpha, scale = alpha)
-
-#  g.y.1 <- function(y){
-#    fin <- mean( 0.5*exp(-sqrt(2*sam)*abs(y))) - u
-#    return(fin)}
-#  g.y.2 <- function(y){
-#    fin <- 1 - u - mean(0.5*exp(-sqrt(2*sam)*abs(y)))
-#    return(fin)}
-#  require(rootSolve)
-
-#  ahy <- array(NA, dim = length(u))
-
-#  for(i in u){
-#   pos <- match(i, u)
-
-#    if(i == 0.5){
-#      ahy[pos] <- 0
-#    }
-#   else if(i < 0.5){
-#      ahy[pos] <- return(uniroot(g.y.1, lower = -15, upper = -0.00000001,
-#                                extendInt = "yes", maxiter = 10000 )$root)
-#    }
-#   else if(i > 0.5){
-#      ahy[pos] <- return(uniroot(g.y.2, lower = 0.00000001, upper = 15,
-#                               extendInt = "yes", maxiter = 10000 )$root)
-#   }
-#  }
-#  return(ahy)
-#}
-
-
-
-
-
-
-
-
-## testing whether inverse function is working well
-#rrr <- seq(0.1, 0.9, by = 0.001)
-#sss <- AY.quantile(u = rrr)
-#qqq <- ANP.cdf(y = sss, alpha = 0.5)
-
-
-
-
-
-
-
-
-
-
-
-
-#### Other coding stuff
-
-#for(i in u){
-##  pos <- match(i, u)
-#  func <- function(x, t){
-#    h <- function(t) ((beta.par^r.par)/gamma(r.par))*pgamma(t, x)*t^(r.par - 1)*exp(- beta.par*t)
-#    f <-  1 - integrate(h, lower = 0, upper = Inf)$value - i
-#    return(f)
-#  }
-
-#}
-#sam <- rgamma(10000, shape = 1/alpha, scale = alpha)
-
-#g.y.1 <- function(y){
-#  fin <- mean( 0.5*exp(-sqrt(2*sam)*abs(y))) - u
-#  return(fin)}
-#g.y.2 <- function(y){
-#  fin <- 1 - u - mean(0.5*exp(-sqrt(2*sam)*abs(y)))
-#  return(fin)}
-#require(rootSolve)
-
-#ahy <- array(NA, dim = length(u))
-
-#for(i in u){
-#  pos <- match(i, u)
-
-#  if(i == xxx){
- #   ahy[pos] <- 0
-#  }
-#  else if(i < xxx){
-#    ahy[pos] <- return(uniroot(g.y.1, lower = -15, upper = -0.00000001,
-#                               extendInt = "yes", maxiter = 10000 )$root)
-#  }
-#  else if(i > xxx){
-#    ahy[pos] <- return(uniroot(g.y.2, lower = 0.00000001, upper = 15,
-#                               extendInt = "yes", maxiter = 10000 )$root)
-#  }
-#}
-#return(ahy)
-#}
-
-#require(rootSolve)
-#ans.roots <- array(NA, dim = length(u))
-#for(i in u){
-#  pos <- match(i, u)
-#  func <- function(x, t){
-#    h <- function(t) ((beta.par^r.par)/gamma(r.par))*pgamma(t, x)*t^(r.par - 1)*exp(- beta.par*t)
-#    f <-  1 - integrate(h, lower = 0, upper = Inf)$value - i
-#    return(f)
-#  }
-#  ans.roots[pos] <- uniroot(func, lower =  0.0002, upper = 100, extendInt = "yes")$root
-#}
-#return(ans.roots)
-#}
-
-
