@@ -22,11 +22,9 @@ disIP <- function(k, lambda){
 #  }
 }
 
-
 disP <- function(k, lambda){
   return(pcpois(k+1, lambda = lambda) - pcpois(k, lambda = lambda))
 }
-
 
 disPcum <- function(x, lambda){
   ar <- array(NA, dim = length(x))
@@ -46,13 +44,9 @@ disIPcum <- function(x, lambda){
   # return(sum(disP(1:x, lambda = lambda)))
 }
 
-
-
-
 plot(seq(1, 10), disP(1:10, 2), type = "h", col = "red")
 points(seq(1, 10), disP(1:10, 2), type = "o", col = "red")
 points(seq(1, 10), disIP(1:10, 2), type = "o", col = "blue")
-
 
 plot(seq(1, 10), disP(1:10, 2), pch = 19, col = "red", ylim = c(0, max(disP(1:10, 2), disIP(1:10, 2))), xlab = "n", ylab = "P(n)")
 points(seq(1, 10), disP(1:10, 2), col = "black", type = "h", lty = 3)
@@ -63,7 +57,6 @@ axis(1, at = seq(0:10))
 legend(5, 0.85, pch = c(19, 1), col = c("red", "blue"),
        legend = c(expression(paste("Poisson (", lambda, " = ", 2, ")")), expression(paste("Inverse Poisson (", lambda, " = ",2, ")"))), bty ="n", cex = 1.2)
 
-
 plot(seq(1, 15), disPcum(1:15, 2), type = "s", col = "red", xlab = "n", ylab = "F(n)")
 points(seq(1, 15), disPcum(1:15, 2), type = "s", col = "red")
 points(seq(1, 15), disIPcum(1:15, 2), type = "s", col = "blue")
@@ -71,20 +64,13 @@ axis(1, at = seq(0:15))
 abline(v = seq(0, 15), col = "grey", lty = 3)
 abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(7, 0.6, col = c("red", "blue"), legend = c("Poisson", "Inverse Poisson"), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.5)
-
-
 par(mfrow = c(1, 2))
-
-
-
-
 grid(ny = NA, col = "black", lty = 3)
 
 points(seq(1, 10), disP(1:10, 2), type = "o", col = "red")
 axis(1, at = seq(0:10))
 grid()
 points(seq(1, 10), disIP(1:10, 2), type = "o", col = "blue")
-
 
 # Quick check of distribution for random mean
 yy <- function(p, sims ){
@@ -100,7 +86,6 @@ yy <- function(p, sims ){
 
 hist(rnorm(100))
 points(seq(-2, 2, 0.01),seq(-2, 2, 0.01), type = "l" )
-
 
 # Geometric discrete
 disG <- function(k, p){
@@ -139,7 +124,6 @@ plot(seq(1, 10), disG(1:10, 1/3), type = "h", col = "red")
 points(seq(1, 10), disG(1:10, 1/3), type = "o", col = "red")
 points(seq(1, 10), disIG(1:10, 1/3), type = "o", col = "blue")
 
-
 plot(seq(0, 10), disG(0:10, p=1/3), pch = 19, col = "red", ylim = c(0, max(disG(0:10, 1/3), disIG(0:10, 1/3))), xlab = "n", ylab = "P(n)")
 points(seq(0, 10), disG(0:10, 1/3), col = "black", type = "h", lty = 3)
 points(seq(0, 10), disIG(0:10, 1/3), col = "blue", pch = 19)
@@ -156,7 +140,6 @@ axis(1, at = seq(0:15))
 abline(v = seq(0, 15), col = "grey", lty = 3)
 abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(4, 0.5, col = c("red", "blue"), legend = c("Geometric", "Inverse Geometric"), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.5)
-
 
 # Geometric discrete
 disG <- function(k){
@@ -209,7 +192,6 @@ axis(1, at = seq(1:10))
 abline(v = seq(0, 10), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(4, 0.5, col = c("red", "blue"), legend = c("Geometric", "Inverse Geometric"), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.5)
-
 
 library(expint)
 
@@ -267,7 +249,6 @@ abline(v = seq(0, 10), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(5, 0.5, col = c("red", "blue"), legend = c(expression(paste("Discrete Gamma(", alpha, " = 2, ",beta," = 1)")), expression(paste("Inverse discrete Gamma(", alpha, " = 2, ",beta," = 1)" ))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.3)
 
-
 # Weibull and inverse Weibull
 disWei <- function(k, alpha){
   ar <- array(NA, dim = length(k))
@@ -321,7 +302,6 @@ axis(1, at = seq(1:15))
 abline(v = seq(0, 10), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(5, 0.5, col = c("red", "blue"), legend = c(expression(paste("Discrete Weibull(", alpha, " = 0.5)")), expression(paste("Inverse discrete Weibull(", alpha, " = 0.5)"))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.3)
-
 
 ## Half-logistic
 disHL <- function(k){
@@ -427,7 +407,6 @@ abline(v = seq(0, 10), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(5, 0.4, col = c("red", "blue"), legend = c(expression(paste("Discrete Pareto (", alpha, " = 0.5)")), expression(paste("Discrete Inverse Pareto (", alpha, " = 0.5)"))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.3)
 
-
 ### Poisson
 disIPois <- function(k, lambda){
   jj <- array(NA, dim = length(k))
@@ -465,7 +444,6 @@ axis(1, at = seq(1:15))
 abline(v = seq(0, 10), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(5, 0.4, col = c("red", "blue"), legend = c(expression(paste("Poisson (", lambda, " = 2)")), expression(paste("Discrete Inverse Poisson (", lambda, " = 2)"))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.4)
-
 
 # Negative binomial distribution and its inverse
 disINB <- function(k, r, beta){
@@ -510,7 +488,6 @@ axis(1, at = seq(1:15))
 abline(v = seq(0, 10), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(4, 0.4, col = c("red", "blue"), legend = c(expression(paste("Negative Binomial (", r, " = 3, ", beta, " = 2)")), expression(paste("Inverse Negative Binomial (", r, " = 3, ", beta, " = 2)"))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.4)
-
 
 # Generalized Sibuya distribution
 disGS <- function(k, nu, alpha){
@@ -569,10 +546,8 @@ abline(v = seq(0, 15), col = "grey", lty = 3)
 legend(3, 0.4, col = c("red", "blue"), legend = c(expression(paste("Generalized Sibuya(", nu, " = 2, ", alpha, " = 1.5)" )),
                                                   expression(paste("Generalized Inverse Sibuya(", nu, " = 2, ", alpha, " = 1.5)" ))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.3)
 
-
 # Zeta- function
 library(VGAM)
-
 
 # logarithmic distribution
 dislog <- function(k, q){
@@ -623,9 +598,7 @@ abline(v = seq(0, 15), col = "grey", lty = 3)
 legend(3, 0.3, col = c("red", "blue"), legend = c(expression(paste("logarithmic(", q, " = 0.7)" )),
                                                   expression(paste("Inverse logarithmic(", q, " = 0.7)" ))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.5)
 
-
 # zipf distribution
-
 diszipf <- function(k, alpha){
   ar <- array(NA, dim = length(k))
   for(i in k){
@@ -673,5 +646,3 @@ abline(v = seq(0, 15), col = "grey", lty = 3)
 #abline(h = c(0, 0.2, 0.4, 0.6, 0.8, 1), col = "grey", lty = 3)
 legend(3, 0.3, col = c("red", "blue"), legend = c(expression(paste("zipf(", alpha, " = 2)" )),
                                                   expression(paste("Inverse zipf(", alpha, " = 2)" ))), lty = c(1, 1), bty = "n", cex = 1.2, seg.len = 0.5)
-
-
